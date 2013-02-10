@@ -1,6 +1,5 @@
 bash -l -c '
 <%= "export http_proxy=\"#{knife_config[:bootstrap_proxy]}\"" if knife_config[:bootstrap_proxy] -%>
-
 if [ ! -f /usr/bin/chef-client ]; then
   apt-get update
   apt-get install -y ruby ruby1.8-dev build-essential wget libruby-extras libruby1.8-extras git
@@ -12,10 +11,11 @@ if [ ! -f /usr/bin/chef-client ]; then
 fi
 
 gem update --no-rdoc --no-ri
-gem install ohai --no-rdoc --no-ri --verbose
-gem install net-ssh
+apt-get install ohai -y
+gem install net-ssh --no-rdoc --no-ri --version=2.2.2
 gem install chef --no-rdoc --no-ri --verbose <%= bootstrap_version_string %>
 
+echo "Chef Installation Complete ******************************************"
 mkdir -p /etc/chef
 
 (
