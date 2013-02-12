@@ -23,27 +23,5 @@ You will need to add your own validation.pem file to the application directory. 
 
 Alternately, I have added a bootstrap__pi.sh script, however it requires the hosts file entry noted above.
 
-PROGRESS:
-=========
-Currently failing on
-> Creating a new client identity for raspberrypi using the validator key.
-
-> raspberrypi 
-
-> raspberrypi [2013-02-10T18:58:20+00:00] INFO: Client key /etc/chef/client.pem is not present - registering
-
-> raspberrypi 
-
-> raspberrypi 
-
-> raspberrypi 
-
-> raspberrypi ================================================================================
-
-> raspberrypi 
-
-> raspberrypi Chef encountered an error attempting to create the client "raspberrypi"
-
-> raspberrypi 
-
-> raspberrypi ================================================================================
+###Chef Server
+Currently running chef-server in a vagrant VM, the bootstrap will need to apply a URL into the hosts file as well that matches the URL of the chef server.  This can be modified in the server.rb file as well, which is included at .server/server.rb, and is based on the Opscode example here: http://wiki.opscode.com/display/chef/Installing+Chef+Server+Manually.
