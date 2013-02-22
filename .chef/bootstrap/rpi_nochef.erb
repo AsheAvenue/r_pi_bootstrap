@@ -1,0 +1,28 @@
+<% 
+chromium_filename = "chromium_22.0.1229.94~r161065%2bdfsg-0.1%2brpi1_armhf.deb"
+chromium_wget_url = "http:\/\/plugwash.raspbian.org\/chromium22\/"
+chromium_wget_url << chromium_filename
+%>
+bash -l -c '
+<%= "export http_proxy=\"#{knife_config[:bootstrap_proxy]}\"" if knife_config[:bootstrap_proxy] -%>
+
+#apt-get update
+#apt-get install -y ruby ruby-dev build-essential wget libruby-extras libruby-extras git vim
+#apt-get install rubygems -y
+
+#gem update --no-rdoc --no-ri
+
+#apt-get upgrade --fix-missing -y
+
+echo "Now installing Chromium..."
+cd /tmp
+wget <%= chromium_wget_url %> 
+apt-get install libnspr4 libnss3 libnss3-1d chromium-inspector -y
+dpkg -i <%= chromium_filename %> 
+
+echo "installing VNC"
+apt-get install tightvncserver -y
+
+echo "Completed Bootstrap Process, will not run Chef"
+'
+

@@ -23,5 +23,12 @@ You will need to add your own validation.pem file to the application directory. 
 
 Alternately, I have added a bootstrap__pi.sh script, however it requires the hosts file entry noted above.
 
+To run without
+
 ###Chef Server
 Currently running chef-server in a vagrant VM, the bootstrap will need to apply a URL into the hosts file as well that matches the URL of the chef server.  This can be modified in the server.rb file as well, which is included at .server/server.rb, and is based on the Opscode example here: http://wiki.opscode.com/display/chef/Installing+Chef+Server+Manually.
+
+###VNC 
+Script will also install tightvncserver... if one is not running, you can init one by executing:
+> vncserver :1 -geometry 1024x728 -depth 24
+
